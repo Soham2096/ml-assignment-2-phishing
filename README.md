@@ -83,7 +83,7 @@ The final test dataset is provided as:
 
 ### GitHub Repository
 
-[GitHub Repository](https://github.com/LokeshDC16/ml-assignment-2)
+[GitHub Repository](https://github.com/Soham2096/ml-assignment-2-phishing)
 
 ### Live Streamlit Application
 
