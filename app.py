@@ -15,7 +15,6 @@ from sklearn.metrics import (
     classification_report
 )
 
-
 # ============================================================
 # PAGE CONFIGURATION
 # ============================================================
@@ -29,103 +28,293 @@ st.set_page_config(
 
 
 # ============================================================
-# CUSTOM STYLING
+# THEME SELECTOR
 # ============================================================
 
-st.markdown(
-    """
-    <style>
-    :root {
-        --accent: #4f46e5;
-        --accent-2: #7c3aed;
-        --accent-soft: rgba(79, 70, 229, 0.10);
-        --border: rgba(100, 116, 139, 0.28);
-    }
+with st.sidebar:
+    theme_choice = st.selectbox(
+        "🎨 Appearance",
+        ["System", "Light", "Dark"],
+        index=0
+    )
 
-    .dashboard-banner {
-        padding: 24px 28px;
-        border-radius: 18px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        border: 1px solid rgba(255,255,255,0.18);
-        margin-bottom: 24px;
-        box-shadow: 0 8px 24px rgba(79,70,229,0.18);
-    }
 
-    .dashboard-heading {
-        color: #ffffff !important;
-        font-size: 34px;
-        font-weight: 750;
-        margin: 0 0 6px 0;
-    }
+# ============================================================
+# THEME STYLING
+# ============================================================
 
-    .dashboard-subtitle {
-        color: rgba(255,255,255,0.88) !important;
-        font-size: 15px;
-        margin: 0;
-    }
+if theme_choice == "Light":
 
-    .section-title {
-        font-size: 22px;
-        font-weight: 700;
-        margin: 22px 0 12px 0;
-    }
+    st.markdown(
+        """
+        <style>
+        .stApp {
+            background-color: #f8fafc;
+            color: #172033;
+        }
 
-    .summary-tile {
-        padding: 17px;
-        border-radius: 14px;
-        background: transparent;
-        border: 1px solid var(--border);
-        min-height: 98px;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-    }
+        section[data-testid="stSidebar"] {
+            background-color: #eef2ff;
+        }
 
-    .tile-label {
-        font-size: 12px;
-        font-weight: 650;
-        opacity: 0.68;
-        margin-bottom: 7px;
-    }
+        .dashboard-banner {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            padding: 26px 30px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 24px rgba(79,70,229,0.18);
+        }
 
-    .tile-value {
-        font-size: 24px;
-        font-weight: 750;
-    }
+        .dashboard-heading {
+            color: white !important;
+            font-size: 35px;
+            font-weight: 750;
+            margin-bottom: 5px;
+        }
 
-    .insight-box {
-        padding: 18px 20px;
-        border-radius: 14px;
-        background: var(--accent-soft);
-        border: 1px solid rgba(79,70,229,0.30);
-        margin: 18px 0 22px 0;
-    }
+        .dashboard-subtitle {
+            color: rgba(255,255,255,0.88) !important;
+            font-size: 15px;
+        }
 
-    .insight-title {
-        font-size: 17px;
-        font-weight: 700;
-    }
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 22px;
+            margin-bottom: 12px;
+            color: #172033;
+        }
 
-    .insight-text {
-        margin-top: 6px;
-        opacity: 0.78;
-        line-height: 1.5;
-    }
+        .summary-tile {
+            padding: 18px;
+            border-radius: 14px;
+            background-color: #ffffff;
+            color: #172033;
+            border: 1px solid #dbe3f0;
+            min-height: 100px;
+            box-shadow: 0 4px 14px rgba(15,23,42,0.08);
+        }
 
-    section[data-testid="stSidebar"] {
-        border-right: 1px solid var(--border);
-    }
+        .tile-label {
+            font-size: 12px;
+            font-weight: 650;
+            color: #64748b;
+            margin-bottom: 7px;
+        }
 
-    .stButton > button {
-        border-radius: 10px;
-        font-weight: 650;
-    }
+        .tile-value {
+            font-size: 24px;
+            font-weight: 750;
+            color: #172033;
+        }
 
-    div[data-testid="stMetricValue"] {
-        font-weight: 750;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+        .insight-box {
+            padding: 18px 20px;
+            border-radius: 14px;
+            background-color: #eef2ff;
+            border: 1px solid #c7d2fe;
+            color: #172033;
+            margin-top: 18px;
+            margin-bottom: 22px;
+        }
+
+        .insight-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #312e81;
+        }
+
+        .insight-text {
+            color: #475569;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .stButton > button {
+            border-radius: 10px;
+            font-weight: 650;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+elif theme_choice == "Dark":
+
+    st.markdown(
+        """
+        <style>
+        .stApp {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        section[data-testid="stSidebar"] {
+            background-color: #111827;
+        }
+
+        .dashboard-banner {
+            background: linear-gradient(135deg, #4338ca, #6d28d9);
+            padding: 26px 30px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+        }
+
+        .dashboard-heading {
+            color: white !important;
+            font-size: 35px;
+            font-weight: 750;
+            margin-bottom: 5px;
+        }
+
+        .dashboard-subtitle {
+            color: rgba(255,255,255,0.88) !important;
+            font-size: 15px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 22px;
+            margin-bottom: 12px;
+            color: #f8fafc;
+        }
+
+        .summary-tile {
+            padding: 18px;
+            border-radius: 14px;
+            background-color: #1e293b;
+            color: #f8fafc;
+            border: 1px solid #334155;
+            min-height: 100px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+        }
+
+        .tile-label {
+            font-size: 12px;
+            font-weight: 650;
+            color: #94a3b8;
+            margin-bottom: 7px;
+        }
+
+        .tile-value {
+            font-size: 24px;
+            font-weight: 750;
+            color: #f8fafc;
+        }
+
+        .insight-box {
+            padding: 18px 20px;
+            border-radius: 14px;
+            background-color: #1e1b4b;
+            border: 1px solid #4338ca;
+            color: #f8fafc;
+            margin-top: 18px;
+            margin-bottom: 22px;
+        }
+
+        .insight-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #c4b5fd;
+        }
+
+        .insight-text {
+            color: #cbd5e1;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .stButton > button {
+            border-radius: 10px;
+            font-weight: 650;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+else:
+
+    st.markdown(
+        """
+        <style>
+        .dashboard-banner {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            padding: 26px 30px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 24px rgba(79,70,229,0.18);
+        }
+
+        .dashboard-heading {
+            color: white !important;
+            font-size: 35px;
+            font-weight: 750;
+            margin-bottom: 5px;
+        }
+
+        .dashboard-subtitle {
+            color: rgba(255,255,255,0.88) !important;
+            font-size: 15px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 22px;
+            margin-bottom: 12px;
+        }
+
+        .summary-tile {
+            padding: 18px;
+            border-radius: 14px;
+            background-color: transparent;
+            border: 1px solid rgba(100,116,139,0.30);
+            min-height: 100px;
+        }
+
+        .tile-label {
+            font-size: 12px;
+            font-weight: 650;
+            opacity: 0.68;
+            margin-bottom: 7px;
+        }
+
+        .tile-value {
+            font-size: 24px;
+            font-weight: 750;
+        }
+
+        .insight-box {
+            padding: 18px 20px;
+            border-radius: 14px;
+            background-color: rgba(79,70,229,0.08);
+            border: 1px solid rgba(79,70,229,0.30);
+            margin-top: 18px;
+            margin-bottom: 22px;
+        }
+
+        .insight-title {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .insight-text {
+            margin-top: 6px;
+            opacity: 0.78;
+            line-height: 1.5;
+        }
+
+        .stButton > button {
+            border-radius: 10px;
+            font-weight: 650;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 
 # ============================================================
@@ -136,8 +325,8 @@ st.markdown(
     """
     <div class="dashboard-banner">
         <div class="dashboard-heading">🔎 WebGuard Analytics</div>
-        <div class="dashboard-tagline">
-            Intelligent Website Risk Analysis & Model Evaluation
+        <div class="dashboard-subtitle">
+            Machine Learning Based Phishing Website Classification & Evaluation
         </div>
     </div>
     """,
@@ -164,7 +353,7 @@ MODEL_PATHS = {
 
 with st.sidebar:
 
-    st.markdown("## Model Studio")
+    st.markdown("## 🧠 Model Studio")
 
     selected_model = st.selectbox(
         "Select analysis model",
@@ -173,19 +362,19 @@ with st.sidebar:
 
     st.markdown("---")
 
-    st.markdown("### Prediction Labels")
+    st.markdown("### Classification")
 
     st.markdown(
         """
-        **-1** → Suspicious / Phishing  
-        **+1** → Safe / Legitimate
+        **-1** → Phishing  
+        **+1** → Legitimate
         """
     )
 
     st.markdown("---")
 
     st.caption(
-        "Trained classifiers available for website risk analysis."
+        "Machine learning models trained for phishing website classification."
     )
 
 
@@ -194,12 +383,12 @@ with st.sidebar:
 # ============================================================
 
 st.markdown(
-    '<div class="panel-heading">1. Dataset Input</div>',
+    '<div class="section-title">1. Dataset Input</div>',
     unsafe_allow_html=True
 )
 
 uploaded_file = st.file_uploader(
-    "Import evaluation CSV",
+    "Upload test_data.csv",
     type=["csv"],
     help="Upload the test dataset used for model evaluation."
 )
@@ -208,7 +397,7 @@ uploaded_file = st.file_uploader(
 if uploaded_file is None:
 
     st.info(
-        "Import a CSV dataset to start the website risk analysis."
+        "Upload the test CSV file to evaluate the selected machine learning model."
     )
 
     st.stop()
@@ -237,6 +426,7 @@ if "result" not in data.columns:
     st.error(
         "The uploaded dataset must contain the 'result' target column."
     )
+
     st.stop()
 
 
@@ -253,43 +443,50 @@ feature_columns = [
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
+
     st.markdown(
         f"""
         <div class="summary-tile">
-            <div class="tile-label">RECORDS</div>
+            <div class="tile-label">TEST INSTANCES</div>
             <div class="tile-value">{len(data):,}</div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
+
 with col2:
+
     st.markdown(
         f"""
         <div class="summary-tile">
-            <div class="tile-label">INPUT FEATURES</div>
+            <div class="tile-label">FEATURES</div>
             <div class="tile-value">{len(feature_columns)}</div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
+
 with col3:
+
     st.markdown(
         f"""
         <div class="summary-tile">
-            <div class="tile-label">NULL VALUES</div>
+            <div class="tile-label">MISSING VALUES</div>
             <div class="tile-value">{data.isnull().sum().sum()}</div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
+
 with col4:
+
     st.markdown(
         f"""
         <div class="summary-tile">
-            <div class="tile-label">ACTIVE MODEL</div>
+            <div class="tile-label">SELECTED MODEL</div>
             <div class="tile-value">{selected_model}</div>
         </div>
         """,
@@ -301,7 +498,7 @@ with col4:
 # DATA PREVIEW
 # ============================================================
 
-with st.expander("Preview evaluation data"):
+with st.expander("📄 View uploaded dataset"):
 
     st.dataframe(
         data.head(10),
@@ -322,14 +519,16 @@ except Exception as error:
     st.error(
         f"Unable to load {selected_model}: {error}"
     )
+
     st.stop()
 
 
 # ============================================================
-# PREPARE INPUT FEATURES AND TARGET
+# PREPARE FEATURES AND TARGET
 # ============================================================
 
 X_test = data[feature_columns]
+
 y_test = data["result"]
 
 
@@ -347,6 +546,7 @@ except Exception as error:
         f"Prediction failed. Please check that the uploaded dataset "
         f"contains the correct 30 features.\n\n{error}"
     )
+
     st.stop()
 
 
@@ -418,25 +618,30 @@ mcc = matthews_corrcoef(
 # ============================================================
 
 st.markdown(
-    '<div class="panel-heading">2. Model Scorecard</div>',
+    '<div class="section-title">2. Model Scorecard</div>',
     unsafe_allow_html=True
 )
 
 metric1, metric2, metric3 = st.columns(3)
 
 with metric1:
+
     st.metric(
         "Accuracy",
         f"{accuracy:.4f}"
     )
 
+
 with metric2:
+
     st.metric(
         "AUC",
         f"{auc_score:.4f}"
     )
 
+
 with metric3:
+
     st.metric(
         "F1 Score",
         f"{f1:.4f}"
@@ -446,18 +651,23 @@ with metric3:
 metric4, metric5, metric6 = st.columns(3)
 
 with metric4:
+
     st.metric(
         "Precision",
         f"{precision:.4f}"
     )
 
+
 with metric5:
+
     st.metric(
         "Recall",
         f"{recall:.4f}"
     )
 
+
 with metric6:
+
     st.metric(
         "MCC",
         f"{mcc:.4f}"
@@ -476,21 +686,21 @@ total_predictions = len(y_test)
 
 if selected_model == "Random Forest":
 
-    insight-box_text = (
+    verdict_text = (
         "Random Forest achieved the strongest overall performance "
         "among the evaluated models in this experiment."
     )
 
 elif selected_model == "Naive Bayes":
 
-    insight-box_text = (
+    verdict_text = (
         "Naive Bayes shows high precision but substantially lower "
         "recall compared with the other evaluated models."
     )
 
 else:
 
-    insight-box_text = (
+    verdict_text = (
         f"{selected_model} provides a useful baseline for comparing "
         "classification performance on the phishing dataset."
     )
@@ -499,13 +709,13 @@ else:
 st.markdown(
     f"""
     <div class="insight-box">
-        <div class="insight-heading">
+        <div class="insight-title">
             {selected_model} — Model Verdict
         </div>
-        <div class="insight-copy">
-            {insight-box_text}
+        <div class="insight-text">
+            {verdict_text}
         </div>
-        <div class="insight-copy">
+        <div class="insight-text">
             Correct predictions: {correct_predictions:,} / {total_predictions:,}
         </div>
     </div>
@@ -519,7 +729,7 @@ st.markdown(
 # ============================================================
 
 st.markdown(
-    '<div class="panel-heading">3. Diagnostic View</div>',
+    '<div class="section-title">3. Diagnostic View</div>',
     unsafe_allow_html=True
 )
 
@@ -530,6 +740,7 @@ cm = confusion_matrix(
 )
 
 left, right = st.columns([1, 1])
+
 
 with left:
 
@@ -556,6 +767,7 @@ with left:
     ax.set_title(selected_model)
 
     for row in range(2):
+
         for column in range(2):
 
             ax.text(
@@ -583,7 +795,7 @@ with left:
 
 with right:
 
-    st.markdown("### Prediction Labels Report")
+    st.markdown("### Classification Report")
 
     report = classification_report(
         y_test,
@@ -610,7 +822,7 @@ with right:
 # ============================================================
 
 st.markdown(
-    '<div class="panel-heading">4. Risk Summary</div>',
+    '<div class="section-title">4. Risk Summary</div>',
     unsafe_allow_html=True
 )
 
@@ -627,14 +839,15 @@ summary1, summary2 = st.columns(2)
 with summary1:
 
     st.metric(
-        "Flagged Websites",
+        "Predicted Phishing",
         phishing_count
     )
+
 
 with summary2:
 
     st.metric(
-        "Safe Websites",
+        "Predicted Legitimate",
         legitimate_count
     )
 
@@ -646,5 +859,5 @@ with summary2:
 st.markdown("---")
 
 st.caption(
-    "WebGuard Analytics | Machine Learning Evaluation"
+    "WebGuard Analytics | Machine Model Learning Evaluation"
 )
