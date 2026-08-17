@@ -83,11 +83,11 @@ The final test dataset is provided as:
 
 ### GitHub Repository
 
-[GitHub Repository](https://github.com/Soham2096/ml-assignment-2-phishing)
+[GitHub Repository](https://github.com/Soham2096/ml-assignment-2-phishing.git)
 
 ### Live Streamlit Application
 
-[Phishing Website Classifier](https://ml-assignment-2-lokesh-2025ac05027-bits.streamlit.app/)
+[WebGuard Analytics Dashboard](https://ml-assignment-2-phishing-qvpasqpu74oixzszq22fys.streamlit.app/)
 
 ---
 
@@ -281,7 +281,7 @@ ml-assignment-2/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/LokeshDC16/ml-assignment-2.git
+git clone https://github.com/Soham2096/ml-assignment-2-phishing.git
 cd ml-assignment-2
 ```
 
