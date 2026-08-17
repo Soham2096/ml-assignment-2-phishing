@@ -21,9 +21,10 @@ from sklearn.metrics import (
 # ============================================================
 
 st.set_page_config(
-    page_title="WebGuard Analytics Dashboard",
+    page_title="WebGuard Analytics",
     page_icon="🔎",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 
@@ -34,91 +35,93 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-
-    /* Main page */
-    .stApp {
-        background-color: #f4f7fb;
+    :root {
+        --accent: #4f46e5;
+        --accent-2: #7c3aed;
+        --accent-soft: rgba(79, 70, 229, 0.10);
+        --border: rgba(100, 116, 139, 0.28);
     }
 
-    /* Main content */
-    .main {
-        padding-top: 1rem;
-    }
-
-    /* Header */
     .dashboard-banner {
         padding: 24px 28px;
-        border-radius: 14px;
-        background: #ffffff;
-        border: 1px solid #c7d2fe;
+        border-radius: 18px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        border: 1px solid rgba(255,255,255,0.18);
         margin-bottom: 24px;
-        box-shadow: 0 8px 24px rgba(79, 70, 229, 0.08);
+        box-shadow: 0 8px 24px rgba(79,70,229,0.18);
     }
 
     .dashboard-heading {
-        font-size: 36px;
+        color: #ffffff !important;
+        font-size: 34px;
+        font-weight: 750;
+        margin: 0 0 6px 0;
+    }
+
+    .dashboard-subtitle {
+        color: rgba(255,255,255,0.88) !important;
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .section-title {
+        font-size: 22px;
         font-weight: 700;
-        margin-bottom: 5px;
+        margin: 22px 0 12px 0;
     }
 
-    .dashboard-tagline {
-        font-size: 16px;
-        color: #475569;
-    }
-
-    /* Section headings */
-    .panel-heading {
-        font-size: 23px;
-        font-weight: 650;
-        margin-top: 20px;
-        margin-bottom: 12px;
-    }
-
-    /* Information cards */
     .summary-tile {
-        padding: 18px;
-        border-radius: 12px;
-        background: #ffffff;
-        border: 1px solid #dbe3ef;
-        min-height: 100px;
+        padding: 17px;
+        border-radius: 14px;
+        background: transparent;
+        border: 1px solid var(--border);
+        min-height: 98px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
     }
 
     .tile-label {
-        font-size: 13px;
-        color: #64748b;
-        margin-bottom: 6px;
+        font-size: 12px;
+        font-weight: 650;
+        opacity: 0.68;
+        margin-bottom: 7px;
     }
 
     .tile-value {
-        font-size: 25px;
+        font-size: 24px;
+        font-weight: 750;
+    }
+
+    .insight-box {
+        padding: 18px 20px;
+        border-radius: 14px;
+        background: var(--accent-soft);
+        border: 1px solid rgba(79,70,229,0.30);
+        margin: 18px 0 22px 0;
+    }
+
+    .insight-title {
+        font-size: 17px;
         font-weight: 700;
     }
 
-    /* Model verdict */
-    .insight-box {
-        padding: 18px 20px;
-        border-radius: 12px;
-        background: #eef2ff;
-        border: 1px solid #6366f1;
-        margin-top: 18px;
-        margin-bottom: 20px;
+    .insight-text {
+        margin-top: 6px;
+        opacity: 0.78;
+        line-height: 1.5;
     }
 
-    .insight-box-title {
-        font-size: 18px;
+    section[data-testid="stSidebar"] {
+        border-right: 1px solid var(--border);
+    }
+
+    .stButton > button {
+        border-radius: 10px;
         font-weight: 650;
     }
 
-    .insight-box-text {
-        color: #475569;
-        margin-top: 5px;
+    div[data-testid="stMetricValue"] {
+        font-weight: 750;
     }
-
-    /* Sidebar */
-    section[data-testid="stSidebar"] {
-        background-color: #ffffff;
-    }
-
     </style>
     """,
     unsafe_allow_html=True
@@ -473,21 +476,21 @@ total_predictions = len(y_test)
 
 if selected_model == "Random Forest":
 
-    verdict_text = (
+    insight-box_text = (
         "Random Forest achieved the strongest overall performance "
         "among the evaluated models in this experiment."
     )
 
 elif selected_model == "Naive Bayes":
 
-    verdict_text = (
+    insight-box_text = (
         "Naive Bayes shows high precision but substantially lower "
         "recall compared with the other evaluated models."
     )
 
 else:
 
-    verdict_text = (
+    insight-box_text = (
         f"{selected_model} provides a useful baseline for comparing "
         "classification performance on the phishing dataset."
     )
@@ -500,7 +503,7 @@ st.markdown(
             {selected_model} — Model Verdict
         </div>
         <div class="insight-copy">
-            {verdict_text}
+            {insight-box_text}
         </div>
         <div class="insight-copy">
             Correct predictions: {correct_predictions:,} / {total_predictions:,}
@@ -643,5 +646,5 @@ with summary2:
 st.markdown("---")
 
 st.caption(
-    "Web Guard Analytics | Machine Learning Evaluation"
+    "WebGuard Analytics | Machine Learning Evaluation"
 )
