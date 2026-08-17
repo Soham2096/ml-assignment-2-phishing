@@ -33,9 +33,9 @@ def main():
     X_test = test_data.drop(columns=[TARGET_COLUMN])
     y_test = test_data[TARGET_COLUMN]
 
-    print("\n========================================")
+    print("\n=====================================")
     print("          MODEL ANALYSIS")
-    print("========================================")
+    print("======================================")
 
     for model_name, filename in MODELS.items():
 
