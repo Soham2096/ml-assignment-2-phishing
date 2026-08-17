@@ -75,7 +75,7 @@ def main():
         .sort_values(ascending=False)
     )
 
-    print("\n========== FEATURE CORRELATION WITH TARGET ==========")
+    print("\n======== FEATURE CORRELATION WITH TARGET ========")
     print(target_correlation)
 
     plt.figure(figsize=(10, 8))

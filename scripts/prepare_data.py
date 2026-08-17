@@ -18,7 +18,7 @@ def main():
     # ---------------------------------------------------------
     df = pd.read_csv(DATA_PATH)
 
-    print("\n========== ORIGINAL DATASET ==========")
+    print("\n======== ORIGINAL DATASET ========")
     print(f"Rows: {df.shape[0]}")
     print(f"Columns: {df.shape[1]}")
 
