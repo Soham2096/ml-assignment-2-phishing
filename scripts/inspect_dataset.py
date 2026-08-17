@@ -51,12 +51,12 @@ def main():
         unique_values = sorted(df[column].unique())
         print(f"{column}: {unique_values}")
 
-    print("\n========== UNIQUE VALUE COUNT PER FEATURE ==========")
+    print("\n======== UNIQUE VALUE COUNT PER FEATURE ========")
 
     for column in df.columns:
         print(f"{column}: {df[column].nunique()}")
 
-    print("\n========== DUPLICATE FEATURE ROWS WITH CONFLICTING TARGETS ==========")
+    print("\n========= DUPLICATE FEATURE ROWS WITH CONFLICTING TARGETS =========")
 
     feature_columns = df.columns[:-1]
 

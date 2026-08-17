@@ -4,7 +4,7 @@ from ucimlrepo import fetch_ucirepo
 
 
 def main():
-    print("Downloading UCI Phishing Websites dataset...")
+    print("Download UCI Phishing Websites dataset...")
 
     dataset = fetch_ucirepo(id=327)
 
