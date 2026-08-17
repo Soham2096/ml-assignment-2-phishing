@@ -643,5 +643,5 @@ with summary2:
 st.markdown("---")
 
 st.caption(
-    "WebGuard Analytics | Machine Learning Evaluation"
+    "Web Guard Analytics | Machine Learning Evaluation"
 )
